@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Netvorix — Autonomous AI Empire</title>
+  <meta name="description" content="Netvorix builds autonomous AI systems, automation agents, and business intelligence solutions that work 24/7."/>
+  <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+
+  <style>
+    /* ====== Basic Reset ====== */
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{
+      font-family: 'Poppins', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      color:#e6eef8;
+      background: #080808;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.5;
+    }
+
+    /* ====== Global variables ====== */
+    :root{
+      --accent:#9b4bff; /* violet */
+      --accent-2:#5be0ff; /* cyan */
+      --muted:#bfcbd9;
+      --card:#0f0f12;
+      --glass: rgba(255,255,255,0.03);
+    }
+
+    a{color:var(--accent);text-decoration:none}
+
+    /* ====== Container ====== */
+    .container{width:min(1200px,94%);margin:0 auto;padding:48px 0}
+
+    /* ====== Navbar ====== */
+    header{
+      position:fixed;left:0;right:0;top:0;z-index:60;
+      background: linear-gradient(180deg, rgba(8,8,8,0.85), rgba(8,8,8,0.45));
+      backdrop-filter: blur(6px);
+      border-bottom:1px solid rgba(255,255,255,0.02);
+    }
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:16px;height:64px}
+    .logo{font-weight:700;color:var(--accent);font-size:20px}
+    nav ul{display:flex;gap:18px;list-style:none;align-items:center}
+    nav li{font-weight:600;color:#dfeaf7;opacity:0.92}
+    .btn-ghost{padding:8px 18px;border-radius:24px;background:linear-gradient(90deg,var(--accent),#c46bff);color:#06060a;font-weight:700;border:none;cursor:pointer;box-shadow:0 8px 24px rgba(155,75,255,0.15)}
+
+    /* ====== Hero ====== */
+    .hero{
+      min-height:82vh;
+      display:flex;align-items:center;gap:48px;padding-top:96px;
+      background: radial-gradient(1000px 600px at 10% 20%, rgba(91,224,255,0.04), transparent),
+                  radial-gradient(800px 500px at 85% 70%, rgba(155,75,255,0.06), transparent),
+                  linear-gradient(180deg,#0b0c10 0%, #111217 30%, #0b0820 100%);
+      position:relative;overflow:hidden;
+    }
+    .hero-left{flex:1;padding:48px 0}
+    .hero-h{font-size:48px;line-height:1.02;font-weight:700;color:#fff;margin-bottom:18px}
+    .hero-p{color:var(--muted);max-width:680px;font-size:18px;margin-bottom:26px}
+    .cta{display:inline-block;padding:14px 28px;border-radius:999px;background:linear-gradient(90deg,var(--accent),#ff68ff);color:#04060a;font-weight:700;cursor:pointer;box-shadow:0 20px 40px rgba(155,75,255,0.12)}
+    .hero-right{flex:0 0 420px;display:flex;align-items:center;justify-content:center;padding-right:24px}
+    .rocket{width:320px;transform:translateY(6px);transition:transform .9s cubic-bezier(.2,.9,.3,1)}
+    .rocket.float{transform:translateY(-14px) rotate(-6deg)}
+
+    /* ====== Sections ====== */
+    section{padding:84px 0}
+    .section-title{text-align:center;font-size:36px;color:var(--accent);margin-bottom:28px;font-weight:700}
+
+    /* Solutions cards */
+    .solutions-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;align-items:stretch}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+          padding:22px;border-radius:14px;box-shadow:0 6px 20px rgba(0,0,0,0.5);border:1px solid rgba(255,255,255,0.02)}
+    .card h4{font-size:20px;margin-bottom:8px;color:#fff}
+    .card p{color:var(--muted);font-size:15px}
+
+    /* Advantages icons row */
+    .advantages{display:flex;gap:22px;justify-content:space-between;align-items:center}
+    .adv-item{text-align:center;flex:1}
+    .adv-item img{width:84px;height:84px;margin-bottom:12px;filter:drop-shadow(0 10px 30px rgba(155,75,255,0.12))}
+    .adv-item p{color:var(--muted);font-weight:600}
+
+    /* About */
+    .about-row{display:flex;gap:24px;align-items:center}
+    .about-text{flex:1}
+    .about-img{flex:0 0 380px}
+
+    /* Contact / form */
+    .contact-wrap{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
+    label{display:block;color:var(--muted);font-size:13px;margin-bottom:6px}
+    .input, textarea{width:100%;padding:12px;border-radius:6px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:#fff}
+    textarea{min-height:120px;resize:vertical}
+    .submit{display:inline-block;padding:12px 20px;background:var(--accent);color:#07070a;border-radius:6px;border:none;cursor:pointer;font-weight:700;margin-top:8px}
+
+    /* Footer */
+    footer{background:linear-gradient(180deg,#0b0b0b,#1a0b2a);padding:56px 0;color:#cfdff0}
+    .footer-grid{display:flex;gap:36px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap}
+    .footer-left{max-width:520px}
+    .footer-links{display:flex;gap:12px;margin-top:18px}
+    .copyright{margin-top:28px;color:#b9c7db;font-size:14px}
+
+    /* ====== Animations & reveal ====== */
+    .reveal{opacity:0;transform:translateY(20px);transition:all .9s cubic-bezier(.2,.9,.3,1)}
+    .reveal.show{opacity:1;transform:translateY(0)}
+
+    /* ====== Utilities & Responsive ====== */
+    .center{text-align:center}
+    @media(max-width:980px){
+      .hero{flex-direction:column-reverse;min-height:70vh;padding-top:88px}
+      .hero-right{display:block;order:-1;padding:8px}
+      .hero-left{padding:32px 0}
+      .hero-h{font-size:34px}
+      .solutions-grid{grid-template-columns:repeat(2,1fr)}
+      .contact-wrap{grid-template-columns:1fr}
+      .advantages{flex-direction:column;gap:18px}
+    }
+    @media(max-width:560px){
+      .hero-h{font-size:26px}
+      .card{padding:16px}
+      .solutions-grid{grid-template-columns:1fr}
+      .logo{font-size:18px}
+      nav ul{display:none}
+      .container{padding:36px 12px}
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <header>
+    <div class="container nav">
+      <div class="logo">Netvorix</div>
+      <nav>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#solutions">Solutions</a></li>
+          <li><a href="#advantages">Advantages</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <button class="btn-ghost" onclick="location.href='#contact'">Enter Netvorix</button>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <main id="home">
+    <section class="hero">
+      <div class="container hero-left">
+        <h1 class="hero-h">Autonomous AI Empire: <br/>The Future Works for You</h1>
+        <p class="hero-p">We build intelligent AI systems, automation agents, and business intelligence solutions that work 24/7 — enterprise-grade, scalable, and autonomous.</p>
+        <a class="cta" href="#solutions">Explore Now</a>
+      </div>
+
+      <div class="hero-right">
+        <!-- Replace rocket.png with your asset in /assets/rocket.png -->
+        <img src="assets/rocket.png" alt="rocket" class="rocket" id="rocket">
+      </div>
+    </section>
+
+    <!-- SOLUTIONS -->
+    <section id="solutions">
+      <div class="container">
+        <div class="section-title">Our Solution</div>
+        <div class="solutions-grid">
+          <div class="card reveal">
+            <h4>AI Automation</h4>
+            <p>Streamline workflows with self-learning AI systems that operate as your digital workforce — scheduling, executing and optimizing tasks.</p>
+          </div>
+          <div class="card reveal">
+            <h4>Business Intelligence</h4>
+            <p>Gain real-time insights and predictive analytics so decisions are faster, smarter and automated across your stack.</p>
+          </div>
+          <div class="card reveal">
+            <h4>Smart Assistants</h4>
+            <p>Deploy intelligent assistants for support, operations and communications — 24/7 agents that reduce manual work and accelerate growth.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ADVANTAGES -->
+    <section id="advantages">
+      <div class="container">
+        <div class="section-title">Advantages</div>
+        <div class="advantages">
+          <div class="adv-item reveal">
+            <img src="assets/ai.png" alt="paper">
+            <p>100% AI-driven efficiency</p>
+          </div>
+          <div class="adv-item reveal">
+            <img src="assets/bi.png" alt="ai">
+            <p>Autonomous business operations</p>
+          </div>
+          <div class="adv-item reveal">
+            <img src="assets/limit.png" alt="profit">
+            <p>No downtime, no limits</p>
+          </div>
+          <div class="adv-item reveal">
+            <img src="https://img.icons8.com/fluency/96/city-buildings.png" alt="infra">
+            <p>Future-ready infrastructure</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="container about-row">
+        <div class="about-text reveal">
+          <div class="section-title">About Us</div>
+          <h2 style="font-size:34px;color:#fff;margin-bottom:12px">Who We Are</h2>
+          <p style="color:var(--muted);max-width:760px">
+            Netvorix is a next-generation AI automation company redefining how businesses work. Our autonomous agents, smart assistants, and AI-driven analytics help companies operate without limits — anytime, anywhere.
+          </p>
+        </div>
+        <div class="about-img">
+          <img src="assets/robot-hand.png" alt="robot-hands" style="width:360px">
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="container">
+        <div class="section-title">Contact</div>
+        <div class="contact-wrap">
+          <div style="background:#fff;color:#000;padding:36px;border-radius:8px">
+            <h3 style="color:#111;font-size:22px;margin-bottom:8px">Let's Build the Future Together...</h3>
+            <p style="color:#333;margin-bottom:8px">Get in touch to collaborate or explore AI automation opportunities.</p>
+            <p style="color:var(--accent)"><a href="mailto:netvorix.global@gmail.com">netvorix.global@gmail.com</a><br/><a href="https://www.netvorix.asia" target="_blank">www.netvorix.asia</a></p>
+            <div style="margin-top:12px">
+              <a href="#" style="margin-right:8px">🔗 LinkedIn</a>
+              <a href="#" style="margin-right:8px">🐦 Twitter</a>
+              <a href="#" style="margin-right:8px">📸 Instagram</a>
+              <a href="#" style="margin-right:8px">💬 Discord</a>
+            </div>
+          </div>
+
+          <form id="contactForm" style="padding:18px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:8px">
+            <div style="display:flex;gap:12px;margin-bottom:12px">
+              <div style="flex:1"><label>First Name</label><input class="input" name="first"></div>
+              <div style="flex:1"><label>Last Name</label><input class="input" name="last"></div>
+            </div>
+            <div style="margin-bottom:12px"><label>Email *</label><input class="input" required name="email" type="email"></div>
+            <div style="margin-bottom:12px"><label>Message</label><textarea name="message" class="input"></textarea></div>
+            <button class="submit" type="submit">Send Message</button>
+            <div id="msg" style="margin-top:12px;color:var(--muted);font-size:14px"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container footer-grid">
+      <div class="footer-left">
+        <div style="color:var(--accent);font-weight:700;font-size:20px">Netvorix Global</div>
+        <div style="font-size:18px;color:#fff;margin-top:6px">Autonomous AI Empire — Powering a Self-Driven Future.</div>
+        <div style="color:var(--muted);margin-top:10px">Innovating automation, intelligence, and global AI systems</div>
+
+        <div class="footer-links" aria-hidden>
+          <a href="#">LinkedIn</a><a href="#">Twitter</a><a href="#">Instagram</a><a href="#">Discord</a>
+        </div>
+
+        <div class="copyright">© 2025 Netvorix<br/>Autonomous AI Empire | All Rights Reserved<br/>Made with ⚡ Neural Precision by the Netvorix AI Core</div>
+      </div>
+
+      <div style="flex:0 0 240px; text-align:center">
+        <img src="assets/earth-globe.png" alt="globe" style="width:96px;margin-bottom:6px">
+        <div style="color:var(--muted);font-size:13px;margin-top:6px">Powered by Neural Cloud Systems</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ====== Scripts ====== -->
+  <script>
+    // simple reveal on scroll
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting) e.target.classList.add('show');
+      });
+    },{threshold:0.12});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+    // rocket float animation on scroll
+    const rocket = document.getElementById('rocket');
+    let floated=false;
+    window.addEventListener('scroll',()=>{
+      const heroBottom = document.querySelector('.hero').getBoundingClientRect().bottom;
+      if(heroBottom < window.innerHeight && !floated){
+        rocket.classList.add('float'); floated=true;
+      } else if(heroBottom >= window.innerHeight && floated){
+        rocket.classList.remove('float'); floated=false;
+      }
+    });
+
+    // simple form submit -> Formspree (replace endpoint)
+    const form = document.getElementById('contactForm');
+    form.addEventListener('submit', async (e)=>{
+      e.preventDefault();
+      const data = new FormData(form);
+      const obj = Object.fromEntries(data.entries());
+      // Replace URL below with your Formspree or Netlify forms endpoint
+      const endpoint = 'https://formspree.io/f/xvgvvbny';
+      try{
+        document.getElementById('msg').textContent = 'Sending...';
+        const res = await fetch(endpoint, {
+          method:'POST',
+          headers:{ 'Accept':'application/json','Content-Type':'application/json' },
+          body: JSON.stringify(obj)
+        });
+        if(res.ok){
+          document.getElementById('msg').textContent = 'Message sent — we will contact you soon!';
+          form.reset();
+        } else {
+          document.getElementById('msg').textContent = 'Failed to send. Replace form endpoint or check configuration.';
+        }
+      }catch(err){
+        document.getElementById('msg').textContent = 'Network error. Try again later.';
+      }
+    });
+
+    // Smooth anchor scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', (e)=>{
+        e.preventDefault();
+        const tgt = document.querySelector(a.getAttribute('href'));
+        if(tgt) tgt.scrollIntoView({behavior:'smooth',block:'start'});
+      });
+    });
+  </script>
+</body>
+</html>
